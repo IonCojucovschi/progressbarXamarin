@@ -55,7 +55,7 @@ namespace ProgressBarExample
                             progressBarStatus += 1;
                             progressBar.SecondaryProgress =2*progressBarStatus ;
                         if (progressBarStatus < 500) { progressBar.Progress = progressBarStatus; }
-                        else { j++; progressBar.Progress =progressBarStatus+j; }
+                        else { j++; progressBar.Progress =progressBarStatus+j/2; }
                         Thread.Sleep(1);//// slep foe 100 ms
                         }
                     progressBarStatus = 0;
