@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+              android:background="#4286f4"
     android:minWidth="25px"
     android:minHeight="25px">
     <Button
@@ -10,10 +11,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnShow" />
+    <ProgressBar
+        android:layout_marginTop="40dp"
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:progressDrawable="@drawable/progress_bar" />
   <ProgressBar
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:indeterminate="true"
-    style="@android:style/Widget.ProgressBar.Horizontal"
-    />
+        android:layout_marginTop="40dp"
+        android:id="@+id/progressBar2342"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#ffffff"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        android:indeterminate="true"
+        />
+  
+  
 </LinearLayout>

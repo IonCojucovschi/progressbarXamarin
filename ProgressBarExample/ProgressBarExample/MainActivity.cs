@@ -2,15 +2,17 @@
 using Android.Widget;
 using Android.OS;
 using System.Threading;
+using Android.Support.V7.App;
 
 namespace ProgressBarExample
 {
-    [Activity(Label = "ProgressBarExample", MainLauncher = true)]
-    public class MainActivity : Activity
+    [Activity(Label = "ProgressBarExample", MainLauncher = true,Theme ="@style/Theme.AppCompat.Light.NoActionBar")]
+    public class MainActivity : AppCompatActivity
     {
 
         public Button buttonShow;
         public int progressBarStatus;
+        ProgressBar progressBar;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -18,6 +20,8 @@ namespace ProgressBarExample
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
+            progressBar = FindViewById<ProgressBar>(Resource.Id.progressBar);
+
             buttonShow = FindViewById<Button>(Resource.Id.btnShow);
 
             buttonShow.Click += ButtonShow_Click;
@@ -27,14 +31,16 @@ namespace ProgressBarExample
         private void ButtonShow_Click(object sender, System.EventArgs e)
         {
             ///create and display new progress  bar
-            ProgressDialog progressBar = new ProgressDialog(this);
-            progressBar.SetCancelable(true);
-            progressBar.SetMessage("File is downloading...");
+            // ProgressDialog progressBar = new ProgressDialog(this);
+            //progressBar.SetCancelable(true);
 
-            progressBar.SetProgressStyle(ProgressDialogStyle.Horizontal);
+            // progressBar.SetMessage("File is downloading...");
+
+            //progressBar.SetProgressStyle(ProgressDialogStyle.Horizontal);
+
             progressBar.Progress = 0;
-            progressBar.Max = 100;
-            progressBar.Show();
+            progressBar.Max = 1000;
+           // progressBar.Show();
 
             progressBarStatus = 0;
 
@@ -42,18 +48,18 @@ namespace ProgressBarExample
             new Thread(new ThreadStart(delegate {
                 int i = 0;
 
-                    while (i< 100)
+                    while (i< 1000)
                     {
                     i++;
                         while (progressBarStatus<100) {
                             progressBarStatus += 1;
                             progressBar.Progress += progressBarStatus;
-                            Thread.Sleep(100);//// slep foe 100 ms
+                            Thread.Sleep(10);//// slep foe 100 ms
                         }
                     progressBarStatus = 0;
                     progressBar.Progress = 0;
                     }
-                    RunOnUiThread(() => { progressBar.SetMessage("File IS DOWNLOADED."); });
+                    RunOnUiThread(() => {  });
                     /// Toast.MakeText(this,"File is downloaded.",ToastLength.Long);
                 
             })).Start();
