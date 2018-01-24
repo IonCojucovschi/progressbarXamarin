@@ -14,7 +14,7 @@
     <ProgressBar
         android:layout_marginTop="40dp"
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:progressDrawable="@drawable/progress_bar" />
