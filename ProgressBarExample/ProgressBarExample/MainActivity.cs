@@ -30,41 +30,38 @@ namespace ProgressBarExample
 
         private void ButtonShow_Click(object sender, System.EventArgs e)
         {
-            ///create and display new progress  bar
-            // ProgressDialog progressBar = new ProgressDialog(this);
-            //progressBar.SetCancelable(true);
-
-            // progressBar.SetMessage("File is downloading...");
-
-            //progressBar.SetProgressStyle(ProgressDialogStyle.Horizontal);
-
+        
             progressBar.Progress = 0;
             progressBar.Max = 1000;
-           // progressBar.Show();
 
             progressBarStatus = 0;
 
             ///run thread for increase progress bar
             new Thread(new ThreadStart(delegate {
                 int i = 0;
-                int j=0;
+                
                     while (i< 100)
                     {
                     i++;
                         while (progressBarStatus<1000) {
                             progressBarStatus += 1;
-                            progressBar.SecondaryProgress =2*progressBarStatus ;
-                        if (progressBarStatus < 500) { progressBar.Progress = progressBarStatus; }
-                        else { j++; progressBar.Progress =progressBarStatus+j/2; }
+                        if (progressBarStatus < 500)
+                        {
+                            progressBar.Progress = progressBarStatus;
+                            progressBar.SecondaryProgress = 2 * progressBarStatus;
+                        }
+                        else
+                        {
+                            progressBar.SecondaryProgress += 2;
+                            progressBar.Progress =progressBarStatus+1;
+                        }
                         Thread.Sleep(1);//// slep foe 100 ms
                         }
-                    progressBarStatus = 0;
-                    progressBar.Progress = 0;
-                    progressBar.SecondaryProgress = 0;
-                   // if(i/2==0) progressBar.SetR
+                        progressBarStatus = 0;
+                        progressBar.Progress = 0;
+                        progressBar.SecondaryProgress = 0;
                     }
                     RunOnUiThread(() => {  });
-                    /// Toast.MakeText(this,"File is downloaded.",ToastLength.Long);
                 
             })).Start();
 
