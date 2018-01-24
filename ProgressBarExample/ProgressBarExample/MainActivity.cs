@@ -47,15 +47,16 @@ namespace ProgressBarExample
             ///run thread for increase progress bar
             new Thread(new ThreadStart(delegate {
                 int i = 0;
-
+                int j=0;
                     while (i< 100)
                     {
                     i++;
                         while (progressBarStatus<1000) {
                             progressBarStatus += 1;
-                            progressBar.SecondaryProgress = progressBarStatus+200;
-                            progressBar.Progress = progressBarStatus;
-                            Thread.Sleep(1);//// slep foe 100 ms
+                            progressBar.SecondaryProgress =2*progressBarStatus ;
+                        if (progressBarStatus < 500) { progressBar.Progress = progressBarStatus; }
+                        else { j++; progressBar.Progress =progressBarStatus+j; }
+                        Thread.Sleep(1);//// slep foe 100 ms
                         }
                     progressBarStatus = 0;
                     progressBar.Progress = 0;
