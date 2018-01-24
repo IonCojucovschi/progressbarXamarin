@@ -39,7 +39,7 @@ namespace ProgressBarExample
             //progressBar.SetProgressStyle(ProgressDialogStyle.Horizontal);
 
             progressBar.Progress = 0;
-            progressBar.Max = 1000;
+            progressBar.Max = 100;
            // progressBar.Show();
 
             progressBarStatus = 0;
@@ -48,13 +48,13 @@ namespace ProgressBarExample
             new Thread(new ThreadStart(delegate {
                 int i = 0;
 
-                    while (i< 1000)
+                    while (i< 100)
                     {
                     i++;
                         while (progressBarStatus<100) {
                             progressBarStatus += 1;
-                            progressBar.Progress += progressBarStatus;
-                            Thread.Sleep(10);//// slep foe 100 ms
+                            progressBar.Progress = progressBarStatus;
+                            Thread.Sleep(1);//// slep foe 100 ms
                         }
                     progressBarStatus = 0;
                     progressBar.Progress = 0;
