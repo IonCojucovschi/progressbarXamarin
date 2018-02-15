@@ -11,9 +11,8 @@ namespace ProgressBarExample
     {
 
         public Button buttonShow;
-        public int progressBarStatus;
         ProgressBar progressBar;
-
+        bool StopCondition=true;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -30,39 +29,24 @@ namespace ProgressBarExample
 
         private void ButtonShow_Click(object sender, System.EventArgs e)
         {
-        
-            progressBar.Progress = 0;
-            progressBar.Max = 1000;
-
-            progressBarStatus = 0;
+            int progressBarStatus = 0;
 
             ///run thread for increase progress bar
             new Thread(new ThreadStart(delegate {
-                int i = 0;
                 
-                    while (i< 100)
+                
+                    while (StopCondition)
                     {
-                    i++;
-                        while (progressBarStatus<1000) {
-                            progressBarStatus += 1;
-                        if (progressBarStatus < 500)
-                        {
-                            progressBar.Progress = progressBarStatus;
-                            progressBar.SecondaryProgress = 2 * progressBarStatus;
-                        }
-                        else
-                        {
-                            progressBar.SecondaryProgress += 2;
-                            progressBar.Progress =progressBarStatus+1;
-                        }
-                        Thread.Sleep(1);//// slep foe 100 ms
-                        }
-                        progressBarStatus = 0;
-                        progressBar.Progress = 0;
-                        progressBar.SecondaryProgress = 0;
+                        if (progressBarStatus == 100) progressBarStatus = 0;
+
+                        progressBarStatus++;
+                        progressBar.Progress =progressBarStatus;
+                        progressBar.SecondaryProgress = 2*progressBarStatus;
+
+                        Thread.Sleep(10);//// slep foe 100 ms
+                        
                     }
-                    RunOnUiThread(() => {  });
-                
+                                 
             })).Start();
 
   
